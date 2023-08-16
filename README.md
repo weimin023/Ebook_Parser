@@ -11,7 +11,7 @@ usage: main.py [-h] [-link LINK] [-begin BEGIN] [-end END]
 terminal> python main.py -link <BOOK_LINK> -begin 1 -end 10
 ```
 > Page 1~10 will be dowloaded.
-### SRGAN v1_2023.08.14
+### Save2PDF with Pixel Restoration v1_2023.08.14
 ```
 usage: sr_script.py [-h] [-path PATH] [-sr SR] [-compress COMPRESS]
 -h, --help          show this help message and exit
