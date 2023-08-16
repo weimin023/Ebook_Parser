@@ -11,7 +11,7 @@ from io import BytesIO
 
 # Declaring Constants
 SAVED_MODEL_PATH = "https://tfhub.dev/captain-pool/esrgan-tf2/1"
-IMG_FORMAT = 'jpg'
+IMG_FORMAT = 'png'
 
 def run(IMAGE_PATH: str, WORK_PATH: str):
         hr_image = utils.preprocess_image(IMAGE_PATH)
@@ -25,7 +25,7 @@ def run(IMAGE_PATH: str, WORK_PATH: str):
         fake_image = tf.squeeze(fake_image)
         
         BASENAME = os.path.basename(IMAGE_PATH)
-        NEWNAME = os.path.join(WORK_PATH, BASENAME)
+        NEWNAME = os.path.join(os.path.join(WORK_PATH, "processed"), BASENAME)
         # Plotting Super Resolution Image
         #utils.plot_image(tf.squeeze(fake_image), title="Super Resolution")
         utils.save_image(tf.squeeze(fake_image), filename = NEWNAME)
@@ -58,12 +58,13 @@ def main():
         for file_name in os.listdir(args.path):
             IMAGE_PATH = args.path
             full_path = os.path.join(IMAGE_PATH, file_name)
-
+            
             if os.path.isfile(full_path) and full_path.endswith("." + IMG_FORMAT):
                 start = time.time()
                 run(full_path, IMAGE_PATH)
                 print ("[{}/{}] processed, time taken: {}".format(i, n, (time.time() - start)))
                 i = i + 1
+            
 
     if args.compress:
         imglist = []

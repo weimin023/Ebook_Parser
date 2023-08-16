@@ -32,8 +32,8 @@ class utils:
         if not isinstance(image, Image.Image):
             image = tf.clip_by_value(image, 0, 255)
             image = Image.fromarray(tf.cast(image, tf.uint8).numpy())
-        image.save("%s.jpg" % filename)
-        print("Saved as %s.jpg" % filename)
+        image.save("%s" % filename)
+        print("Saved as %s" % filename)
 
     def plot_image(image, title=""):
         """

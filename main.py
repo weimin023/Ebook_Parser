@@ -28,8 +28,7 @@ def main():
     options = webdriver.EdgeOptions()
     options.add_argument("start-maximized")
     options.add_argument("disable-infobars")
-    driver = webdriver.Edge(options=options)
-
+    
     download_preferences = {
         "profile.default_content_settings.popups": 0,
         "download.prompt_for_download": "false",
@@ -37,6 +36,8 @@ def main():
         "profile.default_content_setting_values.automatic_downloads": 1
     }
     options.add_experimental_option("prefs", download_preferences)
+
+    driver = webdriver.Edge(options=options)
 
     try:
         driver.get(args.link)
