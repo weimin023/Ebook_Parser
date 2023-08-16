@@ -7,7 +7,7 @@ usage: main.py [-h] [-link LINK] [-begin BEGIN] [-end END]
 -begin BEGIN  Starting page number
 -end END      Ending page number
 ```
-> ex: python main.py -link <LINK> -begin 1 -end 10
+> ex: python main.py -link <BOOK_LINK> -begin 1 -end 10
 > 
 > Page 1~10 will be dowloaded.
 ### SRGAN v1_2023.08.14
