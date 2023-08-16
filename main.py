@@ -1,5 +1,5 @@
 import argparse
-import time, os
+import time, os, subprocess
 import webbrowser
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -13,10 +13,17 @@ DOWNLOAD_PATH = os.getcwd() + "\save"
 def main():
     parser = argparse.ArgumentParser(description="Ebook downloader v1_2023.08.14")
     parser.add_argument("-link", type=str, help="Link to the book (doc88.com)")
+    parser.add_argument("-path", type=str, help="Directory of images")
     parser.add_argument("-begin", type=int, help="Starting page number")
     parser.add_argument("-end", type=int, help="Ending page number")
+    parser.add_argument("-sr", type=bool, help="Run super resolution")
+    
     
     args = parser.parse_args()
+
+    if args.path and args.sr:
+        subprocess.call(['sr_script.py', "-path " + args.path])
+        return
 
     if not args.link or not args.begin or not args.end:
         print ("ERROR: Check Options.")
