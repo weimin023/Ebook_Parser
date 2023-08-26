@@ -73,7 +73,7 @@ def main():
             if file.endswith("." + IMG_FORMAT):
                 out = BytesIO()
                 im = Image.open(os.path.join(PROCESS_PATH, file))
-                im.save(out, format='png', optimize=True, quality=85)
+                im.save(out, format='png', optimize=True, quality=70)
                 imglist.append(out.getvalue())
                 
                 print ("[{}/{}] {} compressed.".format(i, n, file))
@@ -81,7 +81,8 @@ def main():
 
         p1 = Image.open(BytesIO(imglist[0]))
         others = [Image.open(BytesIO(img)) for img in imglist[1:]]
-        p1.save(os.path.join(PROCESS_PATH, 'result.pdf'), save_all=True, append_images=others)
+        timestr = time.strftime("%Y%m%d-%H%M%S")
+        p1.save(os.path.join(PROCESS_PATH, timestr + '.pdf'), save_all=True, append_images=others)
 
 
     
